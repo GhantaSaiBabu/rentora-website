@@ -1,93 +1,278 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Rentora – Vehicle Rentals Made Easy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rentora | Revolutionizing Local Rentals</title>
 
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --primary: #FF7E20; /* Vibrant Copper */
+      --primary-dark: #D35400;
+      --bg-dark: #0A0A0B;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-main: #FFFFFF;
+      --text-dim: #A1A1AA;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
     body {
-      background: linear-gradient(135deg, #0f172a, #020617);
-      color: #ffffff;
-      font-family: "Segoe UI", sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
     }
-    .hero {
-      min-height: 100vh;
+
+    h1, h2, h3 { font-family: 'Syne', sans-serif; }
+
+    /* --- ANIMATED BACKGROUND --- */
+    .bg-glow {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 80% 20%, rgba(255, 126, 32, 0.15), transparent 40%),
+                  radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.1), transparent 40%);
+      z-index: -1;
+    }
+
+    /* --- PREMIUM NAV --- */
+    header {
+      position: fixed;
+      top: 20px; left: 50%;
+      transform: translateX(-50%);
+      width: 90%; max-width: 1000px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      padding: 15px 30px;
+      z-index: 1000;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
     }
-    .card {
-      background-color: #020617;
-      border: 1px solid #1e293b;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-    .brand {
-      font-size: 48px;
-      font-weight: 800;
-      color: #22c55e;
-    }
-    .tagline {
-      color: #cbd5f5;
-      margin-top: 10px;
-      font-size: 18px;
-    }
-    .btn-primary {
-      background-color: #22c55e;
-      border: none;
-      color: #000;
-      font-weight: 600;
-      padding: 12px 28px;
-      border-radius: 10px;
-    }
-    .btn-primary:hover {
-      background-color: #16a34a;
-    }
-    footer {
-      margin-top: 30px;
+
+    .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+    .logo span { color: var(--primary); }
+
+    nav a {
+      color: var(--text-dim);
+      margin-left: 25px;
       font-size: 14px;
-      color: #94a3b8;
-    }
-    a {
-      color: #38bdf8;
+      font-weight: 600;
       text-decoration: none;
+      transition: 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero-badge {
+      background: rgba(255, 126, 32, 0.1);
+      color: var(--primary);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 126, 32, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 85px);
+      line-height: 0.9;
+      margin-bottom: 25px;
+      letter-spacing: -4px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: var(--text-dim);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    /* --- BUTTONS --- */
+    .btn-group { display: flex; gap: 15px; }
+
+    .btn {
+      padding: 18px 35px;
+      border-radius: 100px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 40px rgba(255, 126, 32, 0.3);
+    }
+
+    .btn-primary:hover { transform: scale(1.05); background: var(--primary-dark); }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: 1px solid var(--glass-border);
+    }
+
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+    /* --- BENTO GRID SECTION --- */
+    .section { padding: 100px 5%; max-width: 1300px; margin: auto; }
+
+    .section-header { margin-bottom: 60px; text-align: left; }
+    .section-header h2 { font-size: 45px; letter-spacing: -2px; margin-bottom: 10px; }
+    .section-header p { color: var(--text-dim); font-size: 18px; }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 250px);
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 40px;
+      transition: 0.4s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .bento-card:hover { border-color: var(--primary); background: rgba(255, 255, 255, 0.06); }
+
+    .tall { grid-row: span 2; background: linear-gradient(180deg, var(--card-bg), rgba(255, 126, 32, 0.05)); }
+    .wide { grid-column: span 2; }
+
+    .card-icon { font-size: 40px; margin-bottom: 20px; color: var(--primary); }
+    .bento-card h3 { font-size: 24px; margin-bottom: 10px; }
+    .bento-card p { color: var(--text-dim); font-size: 14px; line-height: 1.6; }
+
+    /* --- APP PREVIEW --- */
+    .app-cta {
+      background: var(--primary);
+      border-radius: 50px;
+      padding: 80px;
+      text-align: center;
+      margin: 100px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-cta h2 { font-size: 50px; color: black; margin-bottom: 20px; }
+    .app-cta p { color: rgba(0,0,0,0.7); font-weight: 600; margin-bottom: 30px; }
+
+    /* --- FOOTER --- */
+    footer {
+      padding: 60px 5%;
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .tall, .wide { grid-column: auto; grid-row: auto; }
+      header nav { display: none; }
+      .hero h1 { font-size: 50px; letter-spacing: -2px; }
     }
   </style>
 </head>
-
 <body>
-  <div class="hero">
-    <div class="card p-5 col-lg-6 col-md-8 col-12">
-      <h1 class="brand">Rentora</h1>
-      <p class="tagline">
-        Smart, fast & reliable vehicle rentals near you.
-      </p>
 
-      <div class="mt-4">
-        <p>
-          Rent bikes, scooters and cars from nearby owners with doorstep
-          delivery and easy pickup.
-        </p>
-      </div>
+  <div class="bg-glow"></div>
 
-      <div class="mt-4 d-flex justify-content-center gap-3">
-        <a href="privacy.html" class="btn btn-primary">Privacy Policy</a>
-      </div>
+  <header>
+    <div class="logo">Rent<span>ora</span></div>
+    <nav>
+      <a href="#how">Process</a>
+      <a href="#customers">Customers</a>
+      <a href="#partners">Partners</a>
+      <a href="mailto:contact@rentora.me" style="color: var(--primary);">Contact</a>
+    </nav>
+  </header>
 
-      <footer class="mt-4">
-        © 2025 Rentora. All rights reserved.
-      </footer>
+  <section class="hero">
+    <div class="hero-badge">VEHICLE RENTALS 2.0</div>
+    <h1>Move Fast.<br>Rent Local.</h1>
+    <p>The premium bridge between local rental shops and modern riders. Bikes, cars, and scooties available at your doorstep.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-primary">Start Riding</a>
+      <a href="#" class="btn btn-secondary">Owner Login</a>
     </div>
-  </div>
+  </section>
+
+  
+
+  <section class="section" id="how">
+    <div class="section-header">
+      <h2>Engineered for Ease.</h2>
+      <p>A Swiggy-like experience for the mobility industry.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento-card tall">
+        <div class="card-icon">📍</div>
+        <h3>Live Tracking</h3>
+        <p>Find vehicles within walking distance from your exact location. Real-time availability, no guesswork.</p>
+      </div>
+      <div class="bento-card wide">
+        <div class="card-icon">⚡</div>
+        <h3>Instant Approval</h3>
+        <p>Skip the heavy documentation. Our automated verification gets you verified and ready to ride in under 60 seconds.</p>
+      </div>
+      <div class="bento-card">
+        <div class="card-icon">🛡️</div>
+        <h3>Trusted Shops</h3>
+        <p>Every partner shop is verified for quality and reliability.</p>
+      </div>
+      <div class="bento-card">
+        <div class="card-icon">🏁</div>
+        <h3>Easy Return</h3>
+        <p>End your ride and have the shop owner handle the rest. Convenience at its peak.</p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="app-cta">
+    <h2>Ready for the App?</h2>
+    <p>We're launching on Android very soon. Join 500+ early testers.</p>
+    <a href="https://wa.me/919100067855" class="btn btn-secondary" style="background: black; color: white;">Get Early Access</a>
+  </section>
+
+  <footer>
+    <div class="logo">Rent<span>ora</span></div>
+    <div>© 2025 Rentora India. All rights reserved.</div>
+    <div>hello@rentora.me</div>
+  </footer>
+
 </body>
 </html>
