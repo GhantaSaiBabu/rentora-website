@@ -25,13 +25,22 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); overflow-x: hidden; padding-bottom: 60px; }
 
         /* Smooth Reveal Animation */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Header UI */
+        /* Floating Animation */
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Header */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(255, 255, 255, 0.85);
@@ -47,75 +56,55 @@
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: var(--text); font-size: 14px; font-weight: 600; }
         
-        .cta-header { background: #E2E8F0; color: #64748B; padding: 10px 22px; border-radius: 50px; font-size: 12px; font-weight: 700; text-decoration: none; cursor: not-allowed; }
+        .cta-header { background: var(--primary); color: #FFF; padding: 10px 22px; border-radius: 50px; font-size: 12px; font-weight: 700; text-decoration: none; transition: 0.3s; }
 
-        /* Hero Section */
+        /* Hero */
         .hero { padding: 180px 6% 100px; text-align: center; position: relative; }
         .pill { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-soft); color: var(--primary); padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 800; margin-bottom: 25px; }
-        .hero h1 { font-family: 'Syne'; font-size: clamp(45px, 8vw, 80px); line-height: 1; letter-spacing: -3px; margin-bottom: 25px; }
+        .hero h1 { font-family: 'Syne'; font-size: clamp(45px, 8vw, 80px); line-height: 1.1; letter-spacing: -3px; margin-bottom: 25px; }
         .hero p { max-width: 650px; margin: 0 auto 40px; color: var(--text-dim); font-size: clamp(17px, 2vw, 20px); line-height: 1.6; }
-        .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         
-        .btn { padding: 18px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn { padding: 18px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-p { background: var(--primary); color: #FFF; }
-        .btn-p.disabled { background: #CBD5E1; cursor: not-allowed; }
         .btn-s { background: var(--bg-soft); color: var(--text); border: 1px solid var(--border); }
-        .btn:hover:not(.disabled) { transform: translateY(-3px); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(var(--primary-rgb), 0.2); }
 
         /* Marquee */
-        .marquee { background: #0F172A; color: #FFF; padding: 14px 0; overflow: hidden; white-space: nowrap; font-size: 13px; font-weight: 600; }
+        .marquee { background: #0F172A; color: #FFF; padding: 14px 0; overflow: hidden; white-space: nowrap; font-size: 13px; font-weight: 600; margin: 40px 0; }
         .marquee-inner { display: inline-block; animation: marquee 40s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Bento Grid */
+        /* Sections */
         section { padding: 80px 6%; max-width: 1200px; margin: auto; }
         .section-tag { color: var(--primary); font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; text-align: center; display: block; margin-bottom: 10px; }
-        .section-title { font-family: 'Syne'; font-size: clamp(32px, 5vw, 48px); text-align: center; margin-bottom: 60px; letter-spacing: -1px; line-height: 1.1; }
+        .section-title { font-family: 'Syne'; font-size: clamp(32px, 5vw, 48px); text-align: center; margin-bottom: 60px; letter-spacing: -1px; }
 
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .card { background: var(--bg-soft); padding: 40px; border-radius: 35px; border: 1px solid var(--border); transition: 0.4s; display: flex; flex-direction: column; height: 100%; }
-        .card:hover { border-color: var(--primary); background: #FFF; }
-        .card-icon { width: 50px; height: 50px; background: #FFF; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); flex-shrink: 0; }
-        .card h3 { font-family: 'Syne'; font-size: 26px; margin-bottom: 15px; }
-        .card p { color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; }
-        .card ul { margin-top: auto; }
-        .card li { list-style: none; margin-bottom: 12px; font-size: 15px; color: var(--text-dim); display: flex; align-items: center; gap: 10px; }
+        .card { background: var(--bg-soft); padding: 40px; border-radius: 35px; border: 1px solid var(--border); transition: 0.4s var(--ease); height: 100%; }
+        .card:hover { border-color: var(--primary); background: #FFF; transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .card-icon { width: 50px; height: 50px; background: #FFF; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-        /* Step Logic */
-        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+        /* App Mockups Styles */
+        .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: flex-start; margin-top: 40px; }
+        .app-display { text-align: center; }
+        .app-img { width: 100%; max-width: 350px; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.12); transition: 0.5s var(--ease); }
+        .app-img:hover { transform: translateY(-10px) rotate(1deg); }
+
+        /* Steps */
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .step-box { padding: 40px 30px; background: #FFF; border: 1px solid var(--border); border-radius: 30px; text-align: center; position: relative; }
         .step-num { position: absolute; top: 20px; right: 25px; font-family: 'Syne'; font-size: 40px; color: var(--primary); opacity: 0.1; font-weight: 800; }
-        .step-box h4 { font-size: 18px; margin: 15px 0 10px; font-weight: 700; }
-        .step-box p { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
 
-        /* Compliance Box */
-        .info-box { background: #FFF4ED; border: 1px solid #FFEDD5; padding: 45px; border-radius: 35px; margin-top: 80px; }
-        .info-box h2 { font-family: 'Syne'; font-size: 26px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
-        .info-box li { list-style: none; margin-bottom: 15px; font-size: 15px; font-weight: 600; display: flex; align-items: flex-start; gap: 12px; }
-        .info-box .icon-wrap { background: var(--primary); color: #FFF; border-radius: 50%; padding: 4px; display: flex; flex-shrink: 0; }
+        /* Mobile CTA */
+        .mobile-cta { display: none; position: fixed; bottom: 0; width: 100%; background: #0F172A; text-align: center; padding: 18px; z-index: 2000; }
+        .mobile-cta a { color: #FFF; font-weight: 800; text-decoration: none; font-size: 13px; letter-spacing: 1px; }
 
-        /* Footer */
-        footer { padding: 80px 6% 40px; border-top: 1px solid var(--border); background: var(--bg-soft); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
-        .footer-brand p { margin-top: 20px; color: var(--text-dim); font-size: 14px; max-width: 320px; line-height: 1.6; }
-        .footer-head { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--text); }
-        .footer-links a { display: block; text-decoration: none; color: var(--text-dim); font-size: 14px; font-weight: 600; margin-bottom: 12px; transition: 0.2s; }
-        .footer-links a:hover { color: var(--primary); }
-        .footer-contact strong { color: var(--primary); font-size: 16px; display: block; margin-top: 5px; }
-        
-        .footer-bottom { border-top: 1px solid var(--border); margin-top: 60px; padding-top: 30px; text-align: center; }
-        .footer-bottom p { color: var(--text-dim); font-size: 13px; font-weight: 500; }
-        .legal-row { margin-top: 15px; display: flex; justify-content: center; gap: 20px; }
-        .legal-row a { text-decoration: none; color: var(--text); font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--border); }
-
-        /* Responsive Adjustments */
         @media (max-width: 900px) {
-            .grid, .steps, .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .grid, .steps, .app-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 42px; }
             .nav-links { display: none; }
+            .mobile-cta { display: block; }
             .hero { padding-top: 140px; }
-            .card { padding: 30px; }
-            section { padding: 60px 6%; }
         }
     </style>
 </head>
@@ -127,21 +116,27 @@
             <span class="logo-txt">Rent<span>ora</span></span>
         </a>
         <nav class="nav-links">
-            <a href="#about">Platform</a>
-            <a href="#how">How It Works</a>
+            <a href="#why">Benefits</a>
             <a href="#apps">Download</a>
+            <a href="#how">How It Works</a>
         </nav>
-        <a href="javascript:void(0)" class="cta-header">App Launching Soon</a>
+        <a href="#apps" class="cta-header">Download App</a>
     </header>
 
     <main>
-        <section class="hero reveal active">
-            <div class="pill"><i data-feather="map-pin"></i> Local Rental Discovery</div>
-            <h1>Local Rentals.<br>Simple & Reliable.</h1>
-            <p>Rentora is a technology platform connecting users with local vehicle rental owners. Browse hubs, send requests, and coordinate directly.</p>
-            <div class="hero-btns">
+        <section class="hero">
+            <div class="pill float"><i data-feather="smartphone"></i> Available for Android</div>
+            <h1 class="reveal">Local Rentals.<br>Simple & Reliable.</h1>
+            <p class="reveal">Rentora is a technology platform connecting users with local vehicle rental owners. Browse hubs, send requests, and coordinate directly.</p>
+            
+            <div class="hero-btns reveal">
                 <a href="#apps" class="btn btn-p">Get the App</a>
-                <a href="#how" class="btn btn-s">Learn More <i data-feather="arrow-down-right" style="margin-left:8px"></i></a>
+                <a href="#how" class="btn btn-s">Learn More <i data-feather="arrow-down-right"></i></a>
+            </div>
+
+            <div class="reveal" style="display:flex; justify-content:center; gap:15px; margin-top:40px; flex-wrap:wrap;">
+                <span class="pill" style="background:#F0FDF4; color:#166534; border:1px solid #BBF7D0;">100% Direct Contact</span>
+                <span class="pill" style="background:#F0F9FF; color:#075985; border:1px solid #BAE6FD;">No Commissions</span>
             </div>
         </section>
 
@@ -152,7 +147,7 @@
         </div>
 
         <section id="why">
-            <span class="section-tag">Why Rentora</span>
+            <span class="section-tag">Benefits</span>
             <h2 class="section-title">Why People Choose Rentora</h2>
             <div class="grid">
                 <div class="card reveal">
@@ -161,82 +156,34 @@
                     <p>No agents. No big companies. Only nearby local rental shops you can directly talk to.</p>
                 </div>
                 <div class="card reveal">
-                    <div class="card-icon"><i data-feather="phone-call"></i></div>
-                    <h3>Direct Owner Contact</h3>
-                    <p>Chat or call the owner directly. Clear doubts and discuss pricing without middlemen.</p>
-                </div>
-                <div class="card reveal">
                     <div class="card-icon"><i data-feather="shield"></i></div>
                     <h3>No Hidden Charges</h3>
                     <p>Rentora doesn’t add commissions or booking fees. What the owner says is final.</p>
                 </div>
-                <div class="card reveal">
-                    <div class="card-icon"><i data-feather="trending-up"></i></div>
-                    <h3>Supports Local</h3>
-                    <p>Every booking helps small rental businesses grow digitally in your community.</p>
-                </div>
             </div>
-        </section>
-
-        <section id="about">
-            <span class="section-tag">Reliability</span>
-            <h2 class="section-title">What is Rentora?</h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <div class="card-icon"><i data-feather="users"></i></div>
-                    <h3>For Users</h3>
-                    <p>Easily find independent rental shops around your location. No hidden fees.</p>
-                    <ul>
-                        <li><i data-feather="search" size="16" color="#FF7E20"></i> Browse bike and car rentals</li>
-                        <li><i data-feather="send" size="16" color="#FF7E20"></i> Send requests to owners</li>
-                        <li><i data-feather="message-circle" size="16" color="#FF7E20"></i> Direct shop coordination</li>
-                    </ul>
-                </div>
-                <div class="card reveal">
-                    <div class="card-icon"><i data-feather="briefcase"></i></div>
-                    <h3>For Owners</h3>
-                    <p>Digitalize your local rental business and reach more nearby riders instantly.</p>
-                    <ul>
-                        <li><i data-feather="plus-square" size="16" color="#FF7E20"></i> List fleet for nearby users</li>
-                        <li><i data-feather="bell" size="16" color="#FF7E20"></i> Receive booking requests</li>
-                        <li><i data-feather="phone-call" size="16" color="#FF7E20"></i> Direct customer contact</li>
-                    </ul>
-                </div>
-            </div>
-            <p style="text-align: center; color: var(--text-dim); margin-top: 40px; font-size: 14px; font-weight: 500;">
-                Rentora is a technology platform and does not own or maintain any vehicles.
-            </p>
         </section>
 
         <section id="apps">
-            <span class="section-tag">Two Apps</span>
-            <h2 class="section-title">One Platform. Two Powerful Apps.</h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <div class="card-icon"><i data-feather="user"></i></div>
-                    <h3>Rentora – User App</h3>
-                    <p>Find nearby vehicles and rent directly from local owners.</p>
-                    <ul>
-                        <li>📍 Find nearby bikes & cars</li>
-                        <li>📞 Contact owners directly</li>
-                        <li>🕒 Flexible local rentals</li>
-                    </ul>
-                    <a href="https://play.google.com/store/apps/details?id=com.rentora.user" class="btn btn-p" style="margin-top:20px;">
-                        Download User App
-                    </a>
+            <span class="section-tag">Download</span>
+            <h2 class="section-title">Two Apps. One Platform.</h2>
+            <p style="text-align:center; max-width:700px; margin:0 auto 50px; color:var(--text-dim);">
+                Rentora provides dedicated experiences for both riders and vehicle owners. 
+                Download the app that fits your needs.
+            </p>
+
+            <div class="app-grid">
+                <div class="app-display reveal">
+                    <img src="user-app.png" alt="Rentora User App" class="app-img">
+                    <h3 style="margin-top: 25px; font-family: 'Syne'; font-size: 24px;">Rentora User</h3>
+                    <p style="color: var(--text-dim); margin: 10px 0 20px;">Find bikes & cars near you instantly.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.rentora.user" class="btn btn-p">Download User App</a>
                 </div>
-                <div class="card reveal">
-                    <div class="card-icon"><i data-feather="briefcase"></i></div>
-                    <h3>Rentora – Partner App</h3>
-                    <p>Manage your rental shop and accept requests digitally.</p>
-                    <ul>
-                        <li>🏪 List your rental shop</li>
-                        <li>📲 Get booking requests</li>
-                        <li>📈 Grow your local business</li>
-                    </ul>
-                    <a href="https://play.google.com/store/apps/details?id=com.rentora.owner" class="btn btn-s" style="margin-top:20px;">
-                        Download Partner App
-                    </a>
+
+                <div class="app-display reveal">
+                    <img src="partner-app.png" alt="Rentora Partner App" class="app-img">
+                    <h3 style="margin-top: 25px; font-family: 'Syne'; font-size: 24px;">Rentora Partner</h3>
+                    <p style="color: var(--text-dim); margin: 10px 0 20px;">Manage your fleet and grow business.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.rentora.owner" class="btn btn-s">Download Partner App</a>
                 </div>
             </div>
         </section>
@@ -244,35 +191,25 @@
         <section id="how">
             <span class="section-tag">The Flow</span>
             <h2 class="section-title">How It Works</h2>
-            <div class="steps reveal">
-                <div class="step-box">
+            <div class="steps">
+                <div class="step-box reveal">
                     <span class="step-num">01</span>
-                    <i data-feather="map" size="32" color="#FF7E20" style="margin-bottom:15px"></i>
+                    <i data-feather="search" size="32" color="#FF7E20" style="margin-bottom:15px"></i>
                     <h4>Discover</h4>
                     <p>Find nearby vehicles listed by independent rental owners.</p>
                 </div>
-                <div class="step-box">
+                <div class="step-box reveal">
                     <span class="step-num">02</span>
                     <i data-feather="clock" size="32" color="#FF7E20" style="margin-bottom:15px"></i>
                     <h4>Request</h4>
                     <p>Send a request. Booking is confirmed only after owner acceptance.</p>
                 </div>
-                <div class="step-box">
+                <div class="step-box reveal">
                     <span class="step-num">03</span>
                     <i data-feather="key" size="32" color="#FF7E20" style="margin-bottom:15px"></i>
-                    <h4>Use & Return</h4>
+                    <h4>Return</h4>
                     <p>Pick up responsibly, use the vehicle, and return it to the owner.</p>
                 </div>
-            </div>
-
-            <div class="info-box reveal">
-                <h2><i data-feather="shield" color="#FF7E20"></i> Important Information</h2>
-                <ul>
-                    <li><div class="icon-wrap"><i data-feather="alert-circle" size="12"></i></div> Rentora does not own, manage, or maintain vehicles.</li>
-                    <li><div class="icon-wrap"><i data-feather="dollar-sign" size="12"></i></div> All payments are handled directly between users and owners.</li>
-                    <li><div class="icon-wrap"><i data-feather="credit-card" size="12"></i></div> Rentora does not collect or process rental payments in-app.</li>
-                    <li><div class="icon-wrap"><i data-feather="tool" size="12"></i></div> Vehicle safety and documents are the owner's responsibility.</li>
-                </ul>
             </div>
         </section>
 
@@ -288,81 +225,51 @@
                     <h3>Are payments done in the app?</h3>
                     <p>No. For transparency, all payments are handled directly between the user and the owner.</p>
                 </div>
-                <div class="card reveal">
-                    <h3>Is Rentora free to use?</h3>
-                    <p>Yes. Downloading and browsing nearby rentals is completely free for all users.</p>
-                </div>
-                <div class="card reveal">
-                    <h3>Who handles vehicle safety?</h3>
-                    <p>The vehicle owner is fully responsible for maintenance, safety, and legal documents.</p>
-                </div>
-            </div>
-        </section>
-
-        <section style="text-align:center;" class="reveal">
-            <h2 class="section-title">Start Renting Smarter Today</h2>
-            <p style="color:var(--text-dim); margin-bottom:40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Download the Rentora apps and connect with nearby rental owners instantly. Simple, local, and reliable.
-            </p>
-            <div class="hero-btns">
-                <a href="https://play.google.com/store/apps/details?id=com.rentora.user" class="btn btn-p">User App</a>
-                <a href="https://play.google.com/store/apps/details?id=com.rentora.owner" class="btn btn-s">Partner App</a>
             </div>
         </section>
     </main>
 
+    <div class="mobile-cta">
+        <a href="#apps">DOWNLOAD RENTORA APPS <i data-feather="arrow-right" size="14"></i></a>
+    </div>
+
     <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo">
-                    <span class="logo-txt">Rent<span>ora</span></span>
-                </a>
-                <p>Bridging the gap between local rental owners and riders through honest technology.</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-head">Platform</div>
-                <a href="#about">Experience</a>
-                <a href="#how">How It Works</a>
-                <a href="#faq">FAQs</a>
-            </div>
-            <div class="footer-links">
-                <div class="footer-head">Support</div>
-                <p style="font-size: 14px; color: var(--text-dim);">Contact us via email:</p>
-                <a href="mailto:rentoraofficials@gmail.com"><i data-feather="mail" size="14" style="vertical-align: middle; margin-right: 5px;"></i> <strong>rentoraofficials@gmail.com</strong></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Rentora • All Rights Reserved</p>
-            <div class="legal-row">
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms.html">Terms & Conditions</a>
+        <div style="text-align:center; padding: 40px 6%;">
+            <p style="color:var(--text-dim); font-size:14px;">&copy; 2026 Rentora • Bridging the gap through technology.</p>
+            <div style="margin-top:15px; display:flex; justify-content:center; gap:20px;">
+                <a href="privacy-policy.html" style="color:var(--text); text-decoration:none; font-size:13px; font-weight:600;">Privacy</a>
+                <a href="terms.html" style="color:var(--text); text-decoration:none; font-size:13px; font-weight:600;">Terms</a>
+                <a href="mailto:rentoraofficials@gmail.com" style="color:var(--text); text-decoration:none; font-size:13px; font-weight:600;">Contact</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Icons
         feather.replace();
 
-        // Scroll Reveal
+        // Staggered Reveal Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    const children = entry.target.querySelectorAll('.reveal');
+                    if (children.length > 0) {
+                        children.forEach((el, i) => {
+                            setTimeout(() => el.classList.add('active'), i * 150);
+                        });
+                    } else {
+                        entry.target.classList.add('active');
+                    }
+                }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+        document.querySelectorAll('.hero .reveal').forEach(el => observer.observe(el));
 
-        // Header Style on Scroll
+        // Header Background Change
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if (window.scrollY > 30) {
-                header.style.padding = '10px 6%';
-                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.03)';
-            } else {
-                header.style.padding = '15px 6%';
-                header.style.boxShadow = 'none';
-            }
+            window.scrollY > 30 ? header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.03)' : header.style.boxShadow = 'none';
         });
     </script>
 </body>
