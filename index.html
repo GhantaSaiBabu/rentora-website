@@ -54,9 +54,9 @@
         .pill { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-soft); color: var(--primary); padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 800; margin-bottom: 25px; }
         .hero h1 { font-family: 'Syne'; font-size: clamp(45px, 8vw, 80px); line-height: 1; letter-spacing: -3px; margin-bottom: 25px; }
         .hero p { max-width: 650px; margin: 0 auto 40px; color: var(--text-dim); font-size: clamp(17px, 2vw, 20px); line-height: 1.6; }
-        .hero-btns { display: flex; justify-content: center; gap: 15px; }
+        .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         
-        .btn { padding: 18px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+        .btn { padding: 18px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-p { background: var(--primary); color: #FFF; }
         .btn-p.disabled { background: #CBD5E1; cursor: not-allowed; }
         .btn-s { background: var(--bg-soft); color: var(--text); border: 1px solid var(--border); }
@@ -68,15 +68,17 @@
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* Bento Grid */
-        section { padding: 100px 6%; max-width: 1200px; margin: auto; }
+        section { padding: 80px 6%; max-width: 1200px; margin: auto; }
         .section-tag { color: var(--primary); font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; text-align: center; display: block; margin-bottom: 10px; }
-        .section-title { font-family: 'Syne'; font-size: clamp(32px, 5vw, 48px); text-align: center; margin-bottom: 60px; letter-spacing: -1px; }
+        .section-title { font-family: 'Syne'; font-size: clamp(32px, 5vw, 48px); text-align: center; margin-bottom: 60px; letter-spacing: -1px; line-height: 1.1; }
 
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .card { background: var(--bg-soft); padding: 40px; border-radius: 35px; border: 1px solid var(--border); transition: 0.4s; }
+        .card { background: var(--bg-soft); padding: 40px; border-radius: 35px; border: 1px solid var(--border); transition: 0.4s; display: flex; flex-direction: column; height: 100%; }
         .card:hover { border-color: var(--primary); background: #FFF; }
-        .card-icon { width: 50px; height: 50px; background: #FFF; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card-icon { width: 50px; height: 50px; background: #FFF; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); flex-shrink: 0; }
         .card h3 { font-family: 'Syne'; font-size: 26px; margin-bottom: 15px; }
+        .card p { color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; }
+        .card ul { margin-top: auto; }
         .card li { list-style: none; margin-bottom: 12px; font-size: 15px; color: var(--text-dim); display: flex; align-items: center; gap: 10px; }
 
         /* Step Logic */
@@ -106,11 +108,14 @@
         .legal-row { margin-top: 15px; display: flex; justify-content: center; gap: 20px; }
         .legal-row a { text-decoration: none; color: var(--text); font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--border); }
 
+        /* Responsive Adjustments */
         @media (max-width: 900px) {
             .grid, .steps, .footer-grid { grid-template-columns: 1fr; gap: 30px; }
             .hero h1 { font-size: 42px; }
             .nav-links { display: none; }
             .hero { padding-top: 140px; }
+            .card { padding: 30px; }
+            section { padding: 60px 6%; }
         }
     </style>
 </head>
@@ -124,6 +129,7 @@
         <nav class="nav-links">
             <a href="#about">Platform</a>
             <a href="#how">How It Works</a>
+            <a href="#apps">Download</a>
         </nav>
         <a href="javascript:void(0)" class="cta-header">App Launching Soon</a>
     </header>
@@ -134,7 +140,7 @@
             <h1>Local Rentals.<br>Simple & Reliable.</h1>
             <p>Rentora is a technology platform connecting users with local vehicle rental owners. Browse hubs, send requests, and coordinate directly.</p>
             <div class="hero-btns">
-                <a href="javascript:void(0)" class="btn btn-p disabled">App Launching Soon</a>
+                <a href="#apps" class="btn btn-p">Get the App</a>
                 <a href="#how" class="btn btn-s">Learn More <i data-feather="arrow-down-right" style="margin-left:8px"></i></a>
             </div>
         </section>
@@ -145,6 +151,33 @@
             </div>
         </div>
 
+        <section id="why">
+            <span class="section-tag">Why Rentora</span>
+            <h2 class="section-title">Why People Choose Rentora</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-icon"><i data-feather="map"></i></div>
+                    <h3>Nearby & Local</h3>
+                    <p>No agents. No big companies. Only nearby local rental shops you can directly talk to.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon"><i data-feather="phone-call"></i></div>
+                    <h3>Direct Owner Contact</h3>
+                    <p>Chat or call the owner directly. Clear doubts and discuss pricing without middlemen.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon"><i data-feather="shield"></i></div>
+                    <h3>No Hidden Charges</h3>
+                    <p>Rentora doesn’t add commissions or booking fees. What the owner says is final.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon"><i data-feather="trending-up"></i></div>
+                    <h3>Supports Local</h3>
+                    <p>Every booking helps small rental businesses grow digitally in your community.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="about">
             <span class="section-tag">Reliability</span>
             <h2 class="section-title">What is Rentora?</h2>
@@ -152,7 +185,7 @@
                 <div class="card reveal">
                     <div class="card-icon"><i data-feather="users"></i></div>
                     <h3>For Users</h3>
-                    <p>Easily find independent rental shops around your location. No hidden middleman fees.</p>
+                    <p>Easily find independent rental shops around your location. No hidden fees.</p>
                     <ul>
                         <li><i data-feather="search" size="16" color="#FF7E20"></i> Browse bike and car rentals</li>
                         <li><i data-feather="send" size="16" color="#FF7E20"></i> Send requests to owners</li>
@@ -173,6 +206,39 @@
             <p style="text-align: center; color: var(--text-dim); margin-top: 40px; font-size: 14px; font-weight: 500;">
                 Rentora is a technology platform and does not own or maintain any vehicles.
             </p>
+        </section>
+
+        <section id="apps">
+            <span class="section-tag">Two Apps</span>
+            <h2 class="section-title">One Platform. Two Powerful Apps.</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-icon"><i data-feather="user"></i></div>
+                    <h3>Rentora – User App</h3>
+                    <p>Find nearby vehicles and rent directly from local owners.</p>
+                    <ul>
+                        <li>📍 Find nearby bikes & cars</li>
+                        <li>📞 Contact owners directly</li>
+                        <li>🕒 Flexible local rentals</li>
+                    </ul>
+                    <a href="https://play.google.com/store/apps/details?id=com.rentora.user" class="btn btn-p" style="margin-top:20px;">
+                        Download User App
+                    </a>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon"><i data-feather="briefcase"></i></div>
+                    <h3>Rentora – Partner App</h3>
+                    <p>Manage your rental shop and accept requests digitally.</p>
+                    <ul>
+                        <li>🏪 List your rental shop</li>
+                        <li>📲 Get booking requests</li>
+                        <li>📈 Grow your local business</li>
+                    </ul>
+                    <a href="https://play.google.com/store/apps/details?id=com.rentora.owner" class="btn btn-s" style="margin-top:20px;">
+                        Download Partner App
+                    </a>
+                </div>
+            </div>
         </section>
 
         <section id="how">
@@ -202,23 +268,45 @@
             <div class="info-box reveal">
                 <h2><i data-feather="shield" color="#FF7E20"></i> Important Information</h2>
                 <ul>
-                    <li>
-                        <div class="icon-wrap"><i data-feather="alert-circle" size="12"></i></div>
-                        Rentora does not own, manage, or maintain vehicles.
-                    </li>
-                    <li>
-                        <div class="icon-wrap"><i data-feather="dollar-sign" size="12"></i></div>
-                        All payments are handled directly between users and owners.
-                    </li>
-                    <li>
-                        <div class="icon-wrap"><i data-feather="credit-card" size="12"></i></div>
-                        Rentora does not collect or process rental payments in-app.
-                    </li>
-                    <li>
-                        <div class="icon-wrap"><i data-feather="tool" size="12"></i></div>
-                        Vehicle safety and documents are the owner's responsibility.
-                    </li>
+                    <li><div class="icon-wrap"><i data-feather="alert-circle" size="12"></i></div> Rentora does not own, manage, or maintain vehicles.</li>
+                    <li><div class="icon-wrap"><i data-feather="dollar-sign" size="12"></i></div> All payments are handled directly between users and owners.</li>
+                    <li><div class="icon-wrap"><i data-feather="credit-card" size="12"></i></div> Rentora does not collect or process rental payments in-app.</li>
+                    <li><div class="icon-wrap"><i data-feather="tool" size="12"></i></div> Vehicle safety and documents are the owner's responsibility.</li>
                 </ul>
+            </div>
+        </section>
+
+        <section id="faq">
+            <span class="section-tag">FAQs</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <h3>Does Rentora own vehicles?</h3>
+                    <p>No. Rentora is a platform that connects you with independent local rental owners.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Are payments done in the app?</h3>
+                    <p>No. For transparency, all payments are handled directly between the user and the owner.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Is Rentora free to use?</h3>
+                    <p>Yes. Downloading and browsing nearby rentals is completely free for all users.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Who handles vehicle safety?</h3>
+                    <p>The vehicle owner is fully responsible for maintenance, safety, and legal documents.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align:center;" class="reveal">
+            <h2 class="section-title">Start Renting Smarter Today</h2>
+            <p style="color:var(--text-dim); margin-bottom:40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Download the Rentora apps and connect with nearby rental owners instantly. Simple, local, and reliable.
+            </p>
+            <div class="hero-btns">
+                <a href="https://play.google.com/store/apps/details?id=com.rentora.user" class="btn btn-p">User App</a>
+                <a href="https://play.google.com/store/apps/details?id=com.rentora.owner" class="btn btn-s">Partner App</a>
             </div>
         </section>
     </main>
@@ -235,6 +323,7 @@
                 <div class="footer-head">Platform</div>
                 <a href="#about">Experience</a>
                 <a href="#how">How It Works</a>
+                <a href="#faq">FAQs</a>
             </div>
             <div class="footer-links">
                 <div class="footer-head">Support</div>
