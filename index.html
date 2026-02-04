@@ -6,7 +6,9 @@
     <title>Rentora – Doorstep Vehicle Rental App in India</title>
     <meta name="description" content="Rentora is an Indian doorstep delivery vehicle rental startup offering bikes and cars through customer and partner mobile apps.">
     
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
+    <link rel="shortcut icon" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,84 +33,102 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); overflow-x: hidden; }
 
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease); }
+        /* Advanced Staggered Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Header UI */
+        /* Floating Element */
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Header */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 12px 6%;
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        .logo-txt { font-family: 'Syne'; font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -1px; }
+        .logo-txt { font-family: 'Syne'; font-size: 24px; font-weight: 800; color: var(--text); letter-spacing: -1px; }
         .logo-txt span { color: var(--primary); }
         
-        .insta-container { display: flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; }
-        .insta-text { 
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .insta-container { display: flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; }
+        .insta-text { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .insta-icon { stroke: url(#insta-gradient); width: 18px; height: 18px; }
         .svg-gradient-container { width: 0; height: 0; position: absolute; visibility: hidden; }
 
-        /* Hero */
-        .hero { padding: 130px 6% 50px; text-align: center; }
-        .hero h1 { font-family: 'Syne'; font-size: clamp(32px, 8vw, 65px); line-height: 1.1; margin-bottom: 15px; letter-spacing: -1.5px; }
-        .hero p { max-width: 550px; margin: 0 auto 30px; color: var(--text-dim); font-size: 16px; line-height: 1.5; }
-        .hero-btns { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+        /* Hero Section */
+        .hero { padding: 150px 6% 70px; text-align: center; }
+        .hero h1 { font-family: 'Syne'; font-size: clamp(36px, 8vw, 75px); line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
+        .hero p { max-width: 600px; margin: 0 auto 35px; color: var(--text-dim); font-size: clamp(16px, 2vw, 20px); line-height: 1.6; }
+        .pill { display: inline-flex; align-items: center; gap: 6px; background: var(--primary-soft); color: var(--primary); padding: 8px 18px; border-radius: 50px; font-size: 11px; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .btn { width: 100%; max-width: 280px; padding: 16px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .btn-p { background: var(--primary); color: #FFF; box-shadow: 0 8px 20px rgba(255, 126, 32, 0.25); }
+        .btn { width: 100%; max-width: 280px; padding: 18px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s var(--ease); font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-p { background: var(--primary); color: #FFF; box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.3); }
         .btn-s { background: var(--bg-soft); color: var(--text); border: 1px solid var(--border); }
+        .btn:hover { transform: translateY(-4px); filter: brightness(1.1); }
 
-        /* Trust Strip */
-        .trust-strip { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 15px 0; overflow: hidden; }
-        .trust-inner { display: flex; justify-content: space-around; gap: 30px; opacity: 0.6; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        /* Premium Trust Strip */
+        .trust-strip { background: #0F172A; color: rgba(255,255,255,0.7); padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        .trust-inner { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px 40px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .trust-item { display: flex; align-items: center; gap: 8px; }
 
-        /* Apps UI */
-        section { padding: 60px 6%; }
-        .section-tag { color: var(--primary); font-weight: 800; font-size: 11px; text-transform: uppercase; text-align: center; display: block; margin-bottom: 10px; }
-        .section-title { font-family: 'Syne'; font-size: 26px; text-align: center; margin-bottom: 35px; }
+        /* Apps Showcase */
+        section { padding: 80px 6%; max-width: 1200px; margin: auto; }
+        .section-title { font-family: 'Syne'; font-size: clamp(28px, 5vw, 45px); text-align: center; margin-bottom: 50px; letter-spacing: -1px; }
         
-        .app-card { background: var(--bg-soft); border-radius: 30px; padding: 30px 20px; margin-bottom: 25px; border: 1px solid var(--border); text-align: center; }
-        .app-img { width: 100%; max-width: 240px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 20px; }
-
-        /* Closable Banner */
-        #app-banner {
-            position: fixed; bottom: 20px; left: 5%; right: 5%; 
-            background: #0F172A; color: white; padding: 15px 20px; 
-            border-radius: 20px; z-index: 2000;
-            display: flex; align-items: center; justify-content: space-between;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            transition: 0.5s var(--ease);
+        .app-card { 
+            background: var(--bg-soft); border-radius: 40px; padding: 40px 25px; margin-bottom: 30px; 
+            border: 1px solid var(--border); text-align: center; transition: 0.4s var(--ease);
         }
-        .banner-info { display: flex; align-items: center; gap: 12px; }
-        .banner-logo { width: 35px; height: 35px; border-radius: 8px; }
-        .banner-text h4 { font-size: 13px; font-weight: 700; }
-        .banner-text p { font-size: 11px; opacity: 0.7; }
-        .banner-actions { display: flex; align-items: center; gap: 15px; }
-        .banner-btn { background: var(--primary); color: white; padding: 8px 15px; border-radius: 50px; text-decoration: none; font-size: 12px; font-weight: 800; }
-        .close-banner { cursor: pointer; opacity: 0.5; }
+        .app-card:hover { border-color: var(--primary); background: #FFF; transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+        .app-img { width: 100%; max-width: 280px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); margin-bottom: 30px; }
 
-        /* Footer & Support */
-        footer { background: var(--bg-soft); padding: 40px 6% 120px; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; text-align: center; }
-        .support-head { font-size: 14px; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; }
-        .support-links { display: flex; flex-direction: column; gap: 10px; align-items: center; }
-        .support-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+        /* How it Works */
+        .step-box { 
+            padding: 30px; background: #FFF; border: 1px solid var(--border); border-radius: 30px; 
+            display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 20px; 
+            transition: 0.3s;
+        }
+        .step-icon { width: 50px; height: 50px; background: var(--primary-soft); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 15px; }
+        .step-info h4 { font-family: 'Syne'; font-size: 20px; margin-bottom: 8px; }
+        .step-info p { font-size: 15px; color: var(--text-dim); line-height: 1.5; }
+
+        /* Smart App Banner */
+        #app-banner {
+            position: fixed; bottom: 25px; left: 6%; right: 6%; 
+            background: #0F172A; color: white; padding: 16px 24px; 
+            border-radius: 24px; z-index: 2000;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transition: 0.6s var(--ease);
+        }
+        .banner-info { display: flex; align-items: center; gap: 15px; }
+        .banner-logo { width: 40px; height: 40px; border-radius: 10px; }
+        .banner-text h4 { font-size: 14px; font-weight: 700; }
+        .banner-text p { font-size: 11px; opacity: 0.6; }
+        .banner-actions { display: flex; align-items: center; gap: 20px; }
+        .banner-btn { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-size: 13px; font-weight: 800; }
+        .close-banner { cursor: pointer; opacity: 0.4; transition: 0.3s; }
+        .close-banner:hover { opacity: 1; transform: scale(1.1); }
+
+        /* Footer */
+        footer { background: var(--bg-soft); padding: 60px 6% 120px; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
+        .support-head { font-weight: 800; font-size: 14px; text-transform: uppercase; margin-bottom: 20px; color: var(--text); }
+        .support-links { display: flex; flex-direction: column; gap: 12px; }
+        .support-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .support-links a:hover { color: var(--primary); }
 
         @media (min-width: 768px) {
-            .hero-btns { flex-direction: row; justify-content: center; }
+            .hero-btns { flex-direction: row; justify-content: center; gap: 20px; }
             .btn { width: auto; }
-            .apps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-            #app-banner { width: 400px; left: auto; right: 30px; }
-            .footer-grid { grid-template-columns: 1fr 1fr 1fr; text-align: left; align-items: start; }
-            .support-links { align-items: start; }
+            .apps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+            .steps-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+            #app-banner { width: 420px; left: auto; right: 40px; }
+            .footer-grid { grid-template-columns: 2fr 1fr 1.5fr; }
         }
     </style>
 </head>
@@ -128,7 +148,7 @@
 
     <header>
         <a href="#" class="logo">
-            <img src="logo.png" alt="Rentora Logo" style="width: 32px; height: 32px; object-fit: contain;">
+            <img src="logo.png" alt="Rentora Logo" style="width: 34px; height: 34px; object-fit: contain;">
             <span class="logo-txt">Rent<span>ora</span></span>
         </a>
         <a href="https://www.instagram.com/rentora_officials" target="_blank" class="insta-container">
@@ -139,51 +159,75 @@
 
     <main>
         <section class="hero reveal active">
-            <h1 class="reveal">Doorstep Rentals.<br>Simple & Fast.</h1>
-            <p class="reveal">Rentora is an Indian doorstep delivery vehicle rental startup for bikes and cars.</p>
-            <div class="hero-btns reveal">
-                <a href="#apps" class="btn btn-p">Get the App</a>
-                <a href="#how" class="btn btn-s">How it Works</a>
+            <div class="pill float"><i data-feather="star"></i> India's First Doorstep Hub</div>
+            <h1>Your Ride, Delivered<br>To Your Doorstep.</h1>
+            <p>Rentora is a technology platform connecting users with local vehicle rental owners for a seamless doorstep delivery experience.</p>
+            <div class="hero-btns">
+                <a href="#apps" class="btn btn-p">Get Started <i data-feather="arrow-right"></i></a>
+                <a href="#how" class="btn btn-s">Learn More</a>
             </div>
         </section>
 
         <div class="trust-strip">
             <div class="trust-inner">
-                <span>• Doorstep Delivery</span>
-                <span>• No Commissions</span>
-                <span>• Verified Partners</span>
+                <div class="trust-item"><i data-feather="check-circle" size="14"></i> Doorstep Delivery</div>
+                <div class="trust-item"><i data-feather="check-circle" size="14"></i> No Commissions</div>
+                <div class="trust-item"><i data-feather="check-circle" size="14"></i> Verified Partners</div>
             </div>
         </div>
 
         <section id="apps">
-            <span class="section-tag">Download</span>
-            <h2 class="section-title">Two Apps. One Goal.</h2>
+            <span class="section-tag">Platform</span>
+            <h2 class="section-title">One Platform. Two Apps.</h2>
             <div class="apps-grid">
                 <div class="app-card reveal">
                     <img src="user-app.png" alt="User App" class="app-img">
-                    <h3>Rentora User</h3>
-                    <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 20px;">Book rides at your doorstep.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.rentora.user" class="btn btn-p">Download User App</a>
+                    <h3>Rentora User App</h3>
+                    <p>Browse bikes & cars near you, compare prices, and book for home delivery instantly.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.rentora.user" class="btn btn-p">Install User App</a>
                 </div>
                 <div class="app-card reveal">
                     <img src="partner-app.png" alt="Partner App" class="app-img">
-                    <h3>Rentora Partner</h3>
-                    <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 20px;">Manage your rental business.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.rentora.owner" class="btn btn-s">Download Partner App</a>
+                    <h3>Rentora Partner App</h3>
+                    <p>Digitalize your rental business, manage fleet, and receive booking requests directly.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.rentora.owner" class="btn btn-s">Install Partner App</a>
                 </div>
             </div>
         </section>
 
         <section id="how">
-            <span class="section-tag">Process</span>
+            <span class="section-tag">Workflow</span>
             <h2 class="section-title">How It Works</h2>
-            <div class="app-card reveal" style="text-align: left; padding: 20px; display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
-                <div style="background: var(--primary-soft); color: var(--primary); padding: 12px; border-radius: 15px;"><i data-feather="map-pin"></i></div>
-                <div><h4 style="font-size: 15px;">1. Discover Hubs</h4><p style="font-size: 12px; color: var(--text-dim);">Find rental shops near your home.</p></div>
+            <div class="steps-grid">
+                <div class="step-box reveal">
+                    <div class="step-icon"><i data-feather="map-pin"></i></div>
+                    <div class="step-info">
+                        <h4>Discover</h4>
+                        <p>Open the app and find local rental shops around your current location.</p>
+                    </div>
+                </div>
+                <div class="step-box reveal">
+                    <div class="step-icon"><i data-feather="mouse-pointer"></i></div>
+                    <div class="step-info">
+                        <h4>Book Ride</h4>
+                        <p>Pick your vehicle and dates. Send a direct request to the owner.</p>
+                    </div>
+                </div>
+                <div class="step-box reveal">
+                    <div class="step-icon"><i data-feather="home"></i></div>
+                    <div class="step-info">
+                        <h4>Home Delivery</h4>
+                        <p>Get the vehicle delivered to your home and start your journey.</p>
+                    </div>
+                </div>
             </div>
-            <div class="app-card reveal" style="text-align: left; padding: 20px; display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
-                <div style="background: var(--primary-soft); color: var(--primary); padding: 12px; border-radius: 15px;"><i data-feather="truck"></i></div>
-                <div><h4 style="font-size: 15px;">2. Home Delivery</h4><p style="font-size: 12px; color: var(--text-dim);">Get the vehicle at your doorstep.</p></div>
+        </section>
+
+        <section class="reveal" style="text-align: center; background: var(--bg-soft); border-radius: 50px; margin-bottom: 80px;">
+            <h2 class="section-title">Ready to Experience?</h2>
+            <p style="margin-bottom: 30px; color: var(--text-dim);">Download the apps and join India's fastest growing rental community.</p>
+            <div class="hero-btns" style="max-width: 400px; margin: auto;">
+                <a href="#apps" class="btn btn-p">Get the Apps Now</a>
             </div>
         </section>
     </main>
@@ -192,8 +236,8 @@
         <div class="banner-info">
             <img src="icon.png" class="banner-logo" alt="Rentora">
             <div class="banner-text">
-                <h4>Rentora App</h4>
-                <p>Install for doorstep rentals</p>
+                <h4>Rentora – Live on Android</h4>
+                <p>Simple & Reliable Local Rentals</p>
             </div>
         </div>
         <div class="banner-actions">
@@ -204,42 +248,61 @@
 
     <footer>
         <div class="footer-grid">
-            <div>
-                <a href="#" class="logo" style="justify-content: center; margin-bottom: 15px;">
+            <div class="reveal">
+                <a href="#" class="logo" style="margin-bottom: 20px;">
                     <span class="logo-txt">Rent<span>ora</span></span>
                 </a>
-                <p style="font-size: 13px; color: var(--text-dim);">Indian Doorstep Vehicle Rental Startup.</p>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">Bridging the gap between local rental owners and riders through technology.</p>
             </div>
-            <div>
-                <div class="support-head">Legal</div>
+            <div class="reveal">
+                <h4 class="support-head">Legal</h4>
                 <div class="support-links">
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms.html">Terms & Conditions</a>
                 </div>
             </div>
-            <div>
-                <div class="support-head">Support</div>
+            <div class="reveal">
+                <h4 class="support-head">Support</h4>
                 <div class="support-links">
-                    <a href="mailto:rentoraofficials@gmail.com"><i data-feather="mail" size="14"></i> rentoraofficials@gmail.com</a>
-                    <a href="https://www.instagram.com/rentora_officials" target="_blank"><i data-feather="instagram" size="14"></i> Instagram</a>
+                    <a href="mailto:rentoraofficials@gmail.com"><i data-feather="mail" size="16"></i> rentoraofficials@gmail.com</a>
+                    <a href="https://www.instagram.com/rentora_officials" target="_blank"><i data-feather="instagram" size="16"></i> @rentora_officials</a>
                 </div>
             </div>
         </div>
-        <div style="text-align:center; margin-top: 40px; opacity: 0.5; font-size: 11px;">
-            <p>&copy; 2026 Rentora Officials • Built in India</p>
+        <div style="text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border); opacity: 0.5; font-size: 11px;">
+            &copy; 2026 Rentora Officials • Built for India
         </div>
     </footer>
 
     <script>
+        // Feather Icons
         feather.replace();
+
+        // High-performance Reveal Observer
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // Banner Close Function
         function closeBanner() {
-            document.getElementById('app-banner').style.transform = 'translateY(150%)';
+            const banner = document.getElementById('app-banner');
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateY(100px)';
+            setTimeout(() => banner.style.display = 'none', 600);
         }
+
+        // Header Blur effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.style.boxShadow = window.scrollY > 20 ? '0 10px 30px rgba(0,0,0,0.05)' : 'none';
+        });
     </script>
 </body>
 </html>
